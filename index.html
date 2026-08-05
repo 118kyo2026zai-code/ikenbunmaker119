@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>意見文ワークシート Ver17 罫線ゼロ版</title>
+<style>
+@page{size:A4 landscape;margin:15mm;}
+body{font-family:"Yu Gothic","Meiryo",sans-serif;background:#eee;margin:0;padding:10px;}
+.controls{background:#fff;border:1px solid #999;padding:10px;margin-bottom:10px;}
+textarea{width:96%;height:40px;font-size:18px;}
+input[type=text]{width:180px;font-size:18px;}
+button{padding:6px 12px;font-size:16px;}
+.sheet{width:245mm;height:165mm;background:#fff;margin:auto;padding:6mm;box-sizing:border-box;writing-mode:vertical-rl;overflow:hidden;font-size:18px;}
+.col{height:100%;margin-left:8px;}
+.title{font-size:32px;font-weight:bold;}
+.topic{width:35mm}.opinion{width:35mm}.reason{width:28mm}.counter{width:32mm}.summary{width:34mm}
+.head{font-size:22px;font-weight:bold;margin-bottom:6px;}
+.keyword{font-weight:bold;font-size:20px;}
+.lines{min-height:75%;}
+label{margin-right:15px;}
+@media print{
+.controls{display:none;}
+.sheet{transform:scale(0.95);transform-origin:top left;}
+}
+</style>
+</head>
+<body>
+<div class="controls">
+お題<br>
+<textarea id="topic">あなたは昼休みに外で遊ぶ方がよいと思うか。それとも教室で過ごす方がよいと思うか。理由を書こう。</textarea><br><br>
+選択肢① <input type="text" id="a" value="外で遊ぶ">
+選択肢② <input type="text" id="b" value="教室で過ごす">
+<button onclick="applyData()">反映</button>
+<button onclick="window.print()">印刷</button>
+<hr>
+<label><input type="checkbox" id="showOpinion" checked>①意見の書き出し</label>
+<label><input type="checkbox" id="showCounter" checked>④反対意見の書き出し</label>
+<label><input type="checkbox" id="showSummary" checked>⑤まとめの書き出し</label>
+</div>
+<div class="sheet">
+<div class="col title">意見文ワークシート</div>
+<div class="col">名前　　　　　　　　　　　　　　　　　　　年　　組</div>
+<div class="col topic"><div class="head">お題</div><div id="topicText">あなたは昼休みに外で遊ぶ方がよいと思うか。それとも教室で過ごす方がよいと思うか。理由を書こう。</div></div>
+<div class="col opinion"><div class="head">①意見</div><div id="opinionText">私は（<span class="a">外で遊ぶ</span>・<span class="b">教室で過ごす</span>）のほうがよいと思う。</div><div class="lines"></div></div>
+<div class="col reason"><div class="head">②理由①</div><div class="lines"></div></div>
+<div class="col reason"><div class="head">③理由②</div><div class="lines"></div></div>
+<div class="col counter"><div class="head">④反対意見</div><div id="counterText">たしかに（<span class="b">教室で過ごす</span>）にもよいところがある。</div><div class="keyword">しかし</div><div class="lines"></div></div>
+<div class="col summary"><div class="head">⑤まとめ</div><div id="summaryText">だから私は（<span class="a">外で遊ぶ</span>・<span class="b">教室で過ごす</span>）のほうがよいと思う。</div><div class="lines"></div></div>
+</div>
+<script>
+function applyData(){
+const a=document.getElementById('a').value;
+const b=document.getElementById('b').value;
+document.getElementById('topicText').textContent=document.getElementById('topic').value;
+document.querySelectorAll('.a').forEach(x=>x.textContent=a);
+document.querySelectorAll('.b').forEach(x=>x.textContent=b);
+document.getElementById('opinionText').style.display=document.getElementById('showOpinion').checked?'block':'none';
+document.getElementById('counterText').style.display=document.getElementById('showCounter').checked?'block':'none';
+document.getElementById('summaryText').style.display=document.getElementById('showSummary').checked?'block':'none';
+}
+window.onload=applyData;
+</script>
+</body></html>
