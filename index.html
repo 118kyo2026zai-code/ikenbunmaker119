@@ -2,62 +2,741 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>意見文ワークシート Ver17 罫線ゼロ版</title>
+<title>意見文ワークシートメーカー Ver17</title>
+
 <style>
-@page{size:A4 landscape;margin:15mm;}
-body{font-family:"Yu Gothic","Meiryo",sans-serif;background:#eee;margin:0;padding:10px;}
-.controls{background:#fff;border:1px solid #999;padding:10px;margin-bottom:10px;}
-textarea{width:96%;height:40px;font-size:18px;}
-input[type=text]{width:180px;font-size:18px;}
-button{padding:6px 12px;font-size:16px;}
-.sheet{width:245mm;height:165mm;background:#fff;margin:auto;padding:6mm;box-sizing:border-box;writing-mode:vertical-rl;overflow:hidden;font-size:18px;}
-.col{height:100%;margin-left:8px;}
-.title{font-size:32px;font-weight:bold;}
-.topic{width:35mm}.opinion{width:35mm}.reason{width:28mm}.counter{width:32mm}.summary{width:34mm}
-.head{font-size:22px;font-weight:bold;margin-bottom:6px;}
-.keyword{font-weight:bold;font-size:20px;}
-.lines{min-height:75%;}
-label{margin-right:15px;}
+
+/* =========================
+   基本設定
+========================= */
+
+@page{
+    size:A4 landscape;
+    margin:15mm;
+}
+
+body{
+    font-family:"Yu Gothic","Meiryo",sans-serif;
+    background:#eeeeee;
+    margin:0;
+    padding:20px;
+}
+
+
+/* =========================
+   編集画面
+========================= */
+
+.controls{
+
+    max-width:900px;
+    margin:0 auto 30px;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+
+}
+
+
+.controls h1{
+
+    text-align:center;
+
+    font-size:28px;
+
+    margin-top:0;
+
+}
+
+
+.section-title{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin-top:20px;
+
+    margin-bottom:8px;
+
+}
+
+
+textarea{
+
+    width:100%;
+
+    height:80px;
+
+    font-size:18px;
+
+    padding:10px;
+
+    box-sizing:border-box;
+
+}
+
+
+.choice-area{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+
+.choice-box{
+
+    flex:1;
+
+}
+
+
+input[type=text]{
+
+    width:100%;
+
+    font-size:20px;
+
+    padding:8px;
+
+    box-sizing:border-box;
+
+}
+
+
+.check-area{
+
+    margin-top:20px;
+
+    font-size:18px;
+
+}
+
+
+button{
+
+    font-size:20px;
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin:15px 10px 0 0;
+
+}
+
+
+.apply{
+
+    background:#4caf50;
+
+    color:white;
+
+}
+
+
+.print{
+
+    background:#2196f3;
+
+    color:white;
+
+}
+
+
+/* =========================
+   プレビュー画面
+========================= */
+
+.preview-area{
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+
+/*
+  画面では見やすいサイズ
+*/
+
+.sheet{
+
+    width:900px;
+
+    height:600px;
+
+    background:white;
+
+    padding:25px;
+
+    box-sizing:border-box;
+
+    writing-mode:vertical-rl;
+
+    overflow:hidden;
+
+    font-size:18px;
+
+    box-shadow:0 0 15px rgba(0,0,0,.2);
+
+}
+
+
+/* 列設定 */
+
+.col{
+
+    height:100%;
+
+    margin-left:8px;
+
+}
+
+
+.title{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+}
+
+
+.topic{
+
+    width:35mm;
+
+}
+
+
+.opinion{
+
+    width:35mm;
+
+}
+
+
+.reason{
+
+    width:28mm;
+
+}
+
+
+.counter{
+
+    width:32mm;
+
+}
+
+
+.summary{
+
+    width:34mm;
+
+}
+
+
+
+.head{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin-bottom:6px;
+
+}
+
+
+.keyword{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+.lines{
+
+    min-height:75%;
+
+}
+
+
+
+label{
+
+    margin-right:15px;
+
+}
+
+
+
+/* =========================
+   印刷時
+========================= */
+
+
 @media print{
-.controls{display:none;}
-.sheet{transform:scale(0.95);transform-origin:top left;}
+
+
+    body{
+
+        background:white;
+
+        padding:0;
+
+    }
+
+
+    .controls{
+
+        display:none;
+
+    }
+
+
+    .sheet{
+
+
+        width:245mm;
+
+        height:165mm;
+
+
+        transform:scale(0.95);
+
+        transform-origin:top left;
+
+
+        box-shadow:none;
+
+
+    }
+
+
+    .preview-area{
+
+        display:block;
+
+    }
+
 }
+
+
+
 </style>
+
 </head>
+
+
 <body>
+
+
+
 <div class="controls">
-お題<br>
-<textarea id="topic">あなたは昼休みに外で遊ぶ方がよいと思うか。それとも教室で過ごす方がよいと思うか。理由を書こう。</textarea><br><br>
-選択肢① <input type="text" id="a" value="外で遊ぶ">
-選択肢② <input type="text" id="b" value="教室で過ごす">
-<button onclick="applyData()">反映</button>
-<button onclick="window.print()">印刷</button>
-<hr>
-<label><input type="checkbox" id="showOpinion" checked>①意見の書き出し</label>
-<label><input type="checkbox" id="showCounter" checked>④反対意見の書き出し</label>
-<label><input type="checkbox" id="showSummary" checked>⑤まとめの書き出し</label>
+
+
+<h1>
+📝 意見文ワークシートメーカー Ver17
+</h1>
+
+
+
+<div class="section-title">
+【お題】
 </div>
+
+
+<textarea id="topic">
+あなたは昼休みに外で遊ぶ方がよいと思うか。それとも教室で過ごす方がよいと思うか。理由を書こう。
+</textarea>
+
+
+
+<div class="section-title">
+【選択肢】
+</div>
+
+
+<div class="choice-area">
+
+
+<div class="choice-box">
+
+① 賛成
+
+<input type="text" id="a" value="外で遊ぶ">
+
+</div>
+
+
+
+<div class="choice-box">
+
+② 反対
+
+<input type="text" id="b" value="教室で過ごす">
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="check-area">
+
+
+<label>
+<input type="checkbox" id="showOpinion" checked>
+①意見の書き出し
+</label>
+
+
+
+<label>
+<input type="checkbox" id="showCounter" checked>
+④反対意見
+</label>
+
+
+
+<label>
+<input type="checkbox" id="showSummary" checked>
+⑤まとめ
+</label>
+
+
+</div>
+
+
+
+<div style="text-align:center">
+
+
+<button class="apply" onclick="applyData()">
+
+📄 反映する
+
+</button>
+
+
+<button class="print" onclick="window.print()">
+
+🖨 印刷する
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="preview-area">
+
+
 <div class="sheet">
-<div class="col title">意見文ワークシート</div>
-<div class="col">名前　　　　　　　　　　　　　　　　　　　年　　組</div>
-<div class="col topic"><div class="head">お題</div><div id="topicText">あなたは昼休みに外で遊ぶ方がよいと思うか。それとも教室で過ごす方がよいと思うか。理由を書こう。</div></div>
-<div class="col opinion"><div class="head">①意見</div><div id="opinionText">私は（<span class="a">外で遊ぶ</span>・<span class="b">教室で過ごす</span>）のほうがよいと思う。</div><div class="lines"></div></div>
-<div class="col reason"><div class="head">②理由①</div><div class="lines"></div></div>
-<div class="col reason"><div class="head">③理由②</div><div class="lines"></div></div>
-<div class="col counter"><div class="head">④反対意見</div><div id="counterText">たしかに（<span class="b">教室で過ごす</span>）にもよいところがある。</div><div class="keyword">しかし</div><div class="lines"></div></div>
-<div class="col summary"><div class="head">⑤まとめ</div><div id="summaryText">だから私は（<span class="a">外で遊ぶ</span>・<span class="b">教室で過ごす</span>）のほうがよいと思う。</div><div class="lines"></div></div>
+
+
+<div class="col title">
+
+意見文ワークシート
+
 </div>
+
+
+<div class="col">
+
+名前　　　　　年　　組
+
+</div>
+
+
+
+<div class="col topic">
+
+
+<div class="head">
+
+お題
+
+</div>
+
+
+<div id="topicText"></div>
+
+
+</div>
+
+
+
+<div class="col opinion">
+
+
+<div class="head">
+
+①意見
+
+</div>
+
+
+<div id="opinionText">
+
+私は（<span class="a"></span>・<span class="b"></span>）のほうがよいと思う。
+
+</div>
+
+
+<div class="lines"></div>
+
+
+</div>
+<div class="col reason">
+
+<div class="head">
+②理由①
+</div>
+
+<div class="lines"></div>
+
+</div>
+
+
+
+<div class="col reason">
+
+<div class="head">
+③理由②
+</div>
+
+<div class="lines"></div>
+
+</div>
+
+
+
+<div class="col counter">
+
+<div class="head">
+④反対意見
+</div>
+
+
+<div id="counterText">
+
+たしかに（<span class="b"></span>）にもよいところがある。
+
+</div>
+
+
+<div class="keyword">
+
+しかし
+
+</div>
+
+
+<div class="lines"></div>
+
+
+</div>
+
+
+
+
+<div class="col summary">
+
+
+<div class="head">
+
+⑤まとめ
+
+</div>
+
+
+<div id="summaryText">
+
+だから私は（<span class="a"></span>・<span class="b"></span>）のほうがよいと思う。
+
+</div>
+
+
+<div class="lines"></div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
 <script>
+
+
+/* =========================
+   データ反映
+========================= */
+
+
 function applyData(){
-const a=document.getElementById('a').value;
-const b=document.getElementById('b').value;
-document.getElementById('topicText').textContent=document.getElementById('topic').value;
-document.querySelectorAll('.a').forEach(x=>x.textContent=a);
-document.querySelectorAll('.b').forEach(x=>x.textContent=b);
-document.getElementById('opinionText').style.display=document.getElementById('showOpinion').checked?'block':'none';
-document.getElementById('counterText').style.display=document.getElementById('showCounter').checked?'block':'none';
-document.getElementById('summaryText').style.display=document.getElementById('showSummary').checked?'block':'none';
+
+
+    const topic =
+    document.getElementById("topic").value;
+
+
+    const a =
+    document.getElementById("a").value;
+
+
+    const b =
+    document.getElementById("b").value;
+
+
+
+    // お題更新
+
+    document.getElementById("topicText").textContent
+    = topic;
+
+
+
+    // 選択肢更新
+
+    document.querySelectorAll(".a")
+    .forEach(function(el){
+
+        el.textContent=a;
+
+    });
+
+
+
+    document.querySelectorAll(".b")
+    .forEach(function(el){
+
+        el.textContent=b;
+
+    });
+
+
+
+    toggleDisplay();
+
+
 }
-window.onload=applyData;
+
+
+
+
+
+/* =========================
+   表示切替
+========================= */
+
+
+function toggleDisplay(){
+
+
+    document.getElementById("opinionText")
+    .style.display =
+
+    document.getElementById("showOpinion").checked
+
+    ? "block"
+
+    : "none";
+
+
+
+
+    document.getElementById("counterText")
+    .style.display =
+
+    document.getElementById("showCounter").checked
+
+    ? "block"
+
+    : "none";
+
+
+
+
+    document.getElementById("summaryText")
+    .style.display =
+
+    document.getElementById("showSummary").checked
+
+    ? "block"
+
+    : "none";
+
+}
+
+
+
+document
+.getElementById("showOpinion")
+.addEventListener("change",toggleDisplay);
+
+
+document
+.getElementById("showCounter")
+.addEventListener("change",toggleDisplay);
+
+
+document
+.getElementById("showSummary")
+.addEventListener("change",toggleDisplay);
+
+
+
+
+
+// 初期表示
+
+window.onload=function(){
+
+    applyData();
+
+};
+
+
+
 </script>
-</body></html>
+
+
+
+</body>
+
+</html>
