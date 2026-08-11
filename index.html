@@ -349,7 +349,24 @@ label{
 
 }
 
+/* =========================
+   プレビューボタン
+========================= */
 
+.preview-button-area{
+    text-align:center;
+    margin-top:20px;
+}
+
+.preview-button{
+    background:#9c27b0;
+    color:white;
+}
+
+.close-preview{
+    background:#757575;
+    color:white;
+}
 
 </style>
 
@@ -437,39 +454,30 @@ label{
 
 </div>
 
-
-
 <div style="text-align:center">
 
-
 <button class="apply" onclick="applyData()">
-
 📄 反映する
-
 </button>
 
-
-<button class="print" onclick="window.print()">
-
-🖨 印刷する
-
+<button class="preview-button" onclick="togglePreview()">
+👀 プレビューを見る
 </button>
-
 
 </div>
 
 
-
 </div>
 
-
-
-
+<div id="previewArea" style="display:none;">
 
 <div class="preview-area">
 
-
 <div class="sheet">
+
+
+
+
 
 
 <div class="col title">
@@ -604,12 +612,21 @@ label{
 
 </div>
 
+</div>
+
+<div class="preview-button-area">
+
+<button class="close-preview" onclick="togglePreview()">
+🙈 プレビューを閉じる
+</button>
+
+<button class="print" onclick="window.print()">
+🖨 印刷する
+</button>
 
 </div>
 
-
-
-
+</div>
 
 <script>
 
@@ -737,7 +754,21 @@ document
 // 初期表示
 
 window.onload=function(){
+function togglePreview(){
 
+    const area = document.getElementById("previewArea");
+
+    if(area.style.display === "none"){
+
+        area.style.display = "block";
+
+    }else{
+
+        area.style.display = "none";
+
+    }
+
+}
     applyData();
 
 };
