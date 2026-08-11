@@ -753,22 +753,38 @@ document
 
 // 初期表示
 
-window.onload=function(){
 function togglePreview(){
 
     const area = document.getElementById("previewArea");
 
     if(area.style.display === "none"){
 
+        applyData();
+
         area.style.display = "block";
+
+        area.scrollIntoView({
+            behavior:"smooth"
+        });
 
     }else{
 
         area.style.display = "none";
 
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
     }
 
 }
+
+
+/* 初期表示 */
+
+window.onload=function(){
+
     applyData();
 
 };
