@@ -28,126 +28,99 @@ body{
 ========================= */
 
 .controls{
-    width:95%; 
-    max-width:none;
+    width:90%;
+    max-width:1100px;
+    min-height:70vh;
+
     margin:0 auto 30px;
+
     background:white;
+
     border-radius:12px;
-    padding:30px 40px;
+
+    padding:40px 50px;
+
     box-sizing:border-box;
+
     box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
 
 .controls h1{
-
     text-align:center;
-
-    font-size:28px;
-
+    font-size:32px;
     margin-top:0;
-
 }
 
 
 .section-title{
-
-    font-size:20px;
-
+    font-size:24px;
     font-weight:bold;
-
-    margin-top:20px;
-
-    margin-bottom:8px;
-
+    margin-top:28px;
+    margin-bottom:10px;
 }
 
 
 textarea{
-
     width:100%;
-
-    height:80px;
-
-    font-size:18px;
-
-    padding:10px;
-
+    height:120px;
+    font-size:21px;
+    padding:12px;
     box-sizing:border-box;
-
 }
 
 
 .choice-area{
-
     display:flex;
-
-    gap:20px;
-
+    gap:30px;
 }
 
 
 .choice-box{
-
     flex:1;
-
+    font-size:20px;
 }
 
 
 input[type=text]{
-
     width:100%;
-
-    font-size:20px;
-
-    padding:8px;
-
+    font-size:21px;
+    padding:10px;
     box-sizing:border-box;
-
+    margin-top:6px;
 }
 
 
 .check-area{
+    margin-top:28px;
+    font-size:20px;
+}
 
-    margin-top:20px;
 
-    font-size:18px;
-
+label{
+    margin-right:20px;
 }
 
 
 button{
-
     font-size:20px;
-
     padding:12px 25px;
-
     border:none;
-
     border-radius:8px;
-
     cursor:pointer;
-
     margin:15px 10px 0 0;
-
 }
 
 
 .apply{
-
     background:#4caf50;
-
     color:white;
-
 }
 
 
 .print{
-
     background:#2196f3;
-
     color:white;
-
 }
 
 
@@ -156,16 +129,10 @@ button{
 ========================= */
 
 .preview-area{
-
     padding:40px;
-
     overflow:auto;
-
-
     display:flex;
-
     justify-content:center;
-
 }
 
 
@@ -174,9 +141,7 @@ button{
 */
 
 .sheet{
-
     width:1100px;
-
     height:740px;
 
     background:white;
@@ -196,152 +161,68 @@ button{
     transform:scale(1.15);
 
     transform-origin:center;
-
-
-
 }
 
 
-/* 列設定 */
+/* =========================
+   列設定
+========================= */
 
 .col{
-
     height:100%;
-
     margin-left:8px;
-
 }
 
 
 .title{
-
     font-size:32px;
-
     font-weight:bold;
-
 }
 
 
 .topic{
-
     width:35mm;
-
 }
 
 
 .opinion{
-
     width:35mm;
-
 }
 
 
 .reason{
-
     width:28mm;
-
 }
 
 
 .counter{
-
     width:32mm;
-
 }
 
 
 .summary{
-
     width:34mm;
-
 }
 
 
-
 .head{
-
     font-size:22px;
-
     font-weight:bold;
-
     margin-bottom:6px;
-
 }
 
 
 .keyword{
-
     font-size:20px;
-
     font-weight:bold;
-
 }
 
 
 .lines{
-
     min-height:75%;
-
 }
 
 
-
-label{
-
-    margin-right:15px;
-
-}
-
-
-
-/* =========================
-   印刷時
-========================= */
-
-
-@media print{
-
-    body{
-        background:white;
-        padding:0;
-        margin:0;
-    }
-
-    .controls{
-        display:none !important;
-    }
-
-    .preview-button-area{
-        display:none !important;
-        height:0 !important;
-        margin:0 !important;
-        padding:0 !important;
-    }
-
-    #previewArea{
-        display:block !important;
-        margin:0 !important;
-        padding:0 !important;
-    }
-
-    .preview-area{
-        display:block !important;
-        padding:0 !important;
-        margin:0 !important;
-        overflow:visible !important;
-    }
-
-    .sheet{
-        width:245mm;
-        height:165mm;
-
-        transform:scale(0.95);
-        transform-origin:top left;
-
-        box-shadow:none;
-    }
-
-}
 /* =========================
    プレビューボタン
 ========================= */
@@ -351,15 +232,116 @@ label{
     margin-top:20px;
 }
 
+
 .preview-button{
     background:#9c27b0;
     color:white;
 }
 
+
 .close-preview{
     background:#757575;
     color:white;
 }
+
+
+/* =========================
+   印刷時
+========================= */
+
+@media print{
+
+    body{
+        background:white;
+        padding:0;
+        margin:0;
+    }
+
+
+    .controls{
+        display:none !important;
+    }
+
+
+    .preview-button-area{
+        display:none !important;
+        height:0 !important;
+        margin:0 !important;
+        padding:0 !important;
+    }
+
+
+    #previewArea{
+        display:block !important;
+        margin:0 !important;
+        padding:0 !important;
+    }
+
+
+    .preview-area{
+        display:block !important;
+        padding:0 !important;
+        margin:0 !important;
+        overflow:visible !important;
+    }
+
+
+    .sheet{
+        width:245mm;
+        height:165mm;
+
+        transform:scale(0.95);
+
+        transform-origin:top left;
+
+        box-shadow:none;
+    }
+
+}
+
+
+/* =========================
+   スマホ・小さい画面用
+========================= */
+
+@media (max-width:700px){
+
+    body{
+        padding:10px;
+    }
+
+
+    .controls{
+        width:96%;
+        padding:25px 20px;
+    }
+
+
+    .controls h1{
+        font-size:26px;
+    }
+
+
+    .choice-area{
+        display:block;
+    }
+
+
+    .choice-box{
+        margin-bottom:20px;
+    }
+
+
+    .check-area{
+        line-height:2;
+    }
+
+}
+
+
+/* =========================
+   スクリプト
+========================= */
 
 </style>
 
@@ -369,6 +351,9 @@ label{
 <body>
 
 
+<!-- =========================
+     編集画面
+========================= -->
 
 <div class="controls">
 
@@ -376,7 +361,6 @@ label{
 <h1>
 📝 意見文ワークシートメーカー Ver17
 </h1>
-
 
 
 <div class="section-title">
@@ -387,7 +371,6 @@ label{
 <textarea id="topic">
 あなたは昼休みに外で遊ぶ方がよいと思うか。それとも教室で過ごす方がよいと思うか。理由を書こう。
 </textarea>
-
 
 
 <div class="section-title">
@@ -407,7 +390,6 @@ label{
 </div>
 
 
-
 <div class="choice-box">
 
 ② 反対
@@ -420,8 +402,6 @@ label{
 </div>
 
 
-
-
 <div class="check-area">
 
 
@@ -431,12 +411,10 @@ label{
 </label>
 
 
-
 <label>
 <input type="checkbox" id="showCounter" checked>
 ④反対意見
 </label>
-
 
 
 <label>
@@ -447,11 +425,13 @@ label{
 
 </div>
 
+
 <div style="text-align:center">
 
 <button class="apply" onclick="applyData()">
 📄 反映する
 </button>
+
 
 <button class="preview-button" onclick="togglePreview()">
 👀 プレビューを見る
@@ -462,15 +442,18 @@ label{
 
 </div>
 
+
+<!-- =========================
+     プレビュー
+========================= -->
+
 <div id="previewArea" style="display:none;">
+
 
 <div class="preview-area">
 
+
 <div class="sheet">
-
-
-
-
 
 
 <div class="col title">
@@ -487,7 +470,6 @@ label{
 </div>
 
 
-
 <div class="col topic">
 
 
@@ -502,7 +484,6 @@ label{
 
 
 </div>
-
 
 
 <div class="col opinion">
@@ -526,34 +507,45 @@ label{
 
 
 </div>
+
+
 <div class="col reason">
 
 <div class="head">
+
 ②理由①
+
 </div>
+
 
 <div class="lines"></div>
 
-</div>
 
+</div>
 
 
 <div class="col reason">
 
 <div class="head">
+
 ③理由②
+
 </div>
+
 
 <div class="lines"></div>
 
-</div>
 
+</div>
 
 
 <div class="col counter">
 
+
 <div class="head">
+
 ④反対意見
+
 </div>
 
 
@@ -575,8 +567,6 @@ label{
 
 
 </div>
-
-
 
 
 <div class="col summary">
@@ -602,24 +592,36 @@ label{
 </div>
 
 
+</div>
+
 
 </div>
 
-</div>
+
+<!-- プレビュー画面のボタン -->
 
 <div class="preview-button-area">
 
+
 <button class="close-preview" onclick="togglePreview()">
+
 🙈 プレビューを閉じる
+
 </button>
+
 
 <button class="print" onclick="window.print()">
+
 🖨 印刷する
+
 </button>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <script>
 
@@ -628,141 +630,144 @@ label{
    データ反映
 ========================= */
 
-
 function applyData(){
 
-
     const topic =
-    document.getElementById("topic").value;
+        document.getElementById("topic").value;
 
 
     const a =
-    document.getElementById("a").value;
+        document.getElementById("a").value;
 
 
     const b =
-    document.getElementById("b").value;
+        document.getElementById("b").value;
 
 
+    /* お題更新 */
 
-    // お題更新
-
-    document.getElementById("topicText").textContent
-    = topic;
-
+    document.getElementById("topicText").textContent =
+        topic;
 
 
-    // 選択肢更新
+    /* 選択肢更新 */
 
     document.querySelectorAll(".a")
-    .forEach(function(el){
+        .forEach(function(el){
 
-        el.textContent=a;
+            el.textContent = a;
 
-    });
-
+        });
 
 
     document.querySelectorAll(".b")
-    .forEach(function(el){
+        .forEach(function(el){
 
-        el.textContent=b;
+            el.textContent = b;
 
-    });
-
+        });
 
 
     toggleDisplay();
 
-
 }
-
-
-
 
 
 /* =========================
    表示切替
 ========================= */
 
-
 function toggleDisplay(){
 
 
     document.getElementById("opinionText")
-    .style.display =
+        .style.display =
 
-    document.getElementById("showOpinion").checked
+        document.getElementById("showOpinion").checked
 
-    ? "block"
+        ? "block"
 
-    : "none";
-
-
+        : "none";
 
 
     document.getElementById("counterText")
-    .style.display =
+        .style.display =
 
-    document.getElementById("showCounter").checked
+        document.getElementById("showCounter").checked
 
-    ? "block"
+        ? "block"
 
-    : "none";
-
-
+        : "none";
 
 
     document.getElementById("summaryText")
-    .style.display =
+        .style.display =
 
-    document.getElementById("showSummary").checked
+        document.getElementById("showSummary").checked
 
-    ? "block"
+        ? "block"
 
-    : "none";
+        : "none";
 
 }
 
 
+/* =========================
+   チェックボックス
+========================= */
 
 document
-.getElementById("showOpinion")
-.addEventListener("change",toggleDisplay);
-
-
-document
-.getElementById("showCounter")
-.addEventListener("change",toggleDisplay);
+    .getElementById("showOpinion")
+    .addEventListener("change",toggleDisplay);
 
 
 document
-.getElementById("showSummary")
-.addEventListener("change",toggleDisplay);
+    .getElementById("showCounter")
+    .addEventListener("change",toggleDisplay);
 
 
+document
+    .getElementById("showSummary")
+    .addEventListener("change",toggleDisplay);
 
 
-
-// 初期表示
+/* =========================
+   プレビュー表示・非表示
+========================= */
 
 function togglePreview(){
 
-    const area = document.getElementById("previewArea");
+    const area =
+        document.getElementById("previewArea");
+
 
     if(area.style.display === "none"){
 
+        /* 最新データを反映 */
+
         applyData();
 
+
+        /* プレビュー表示 */
+
         area.style.display = "block";
+
+
+        /* プレビュー位置へ移動 */
 
         area.scrollIntoView({
             behavior:"smooth"
         });
 
+
     }else{
 
+        /* プレビューを閉じる */
+
         area.style.display = "none";
+
+
+        /* 編集画面の上へ戻る */
 
         window.scrollTo({
             top:0,
@@ -774,7 +779,9 @@ function togglePreview(){
 }
 
 
-/* 初期表示 */
+/* =========================
+   初期表示
+========================= */
 
 window.onload=function(){
 
@@ -783,11 +790,8 @@ window.onload=function(){
 };
 
 
-
 </script>
 
 
-
 </body>
-
 </html>
