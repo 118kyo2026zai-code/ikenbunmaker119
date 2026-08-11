@@ -28,18 +28,12 @@ body{
 ========================= */
 
 .controls{
-
-    max-width:900px;
+    max-width:1100px;
     margin:0 auto 30px;
-
     background:white;
-
     border-radius:12px;
-
-    padding:25px;
-
+    padding:30px 40px;
     box-shadow:0 3px 10px rgba(0,0,0,.15);
-
 }
 
 
@@ -305,50 +299,47 @@ label{
 
 @media print{
 
-
     body{
-
         background:white;
-
         padding:0;
-
+        margin:0;
     }
-
 
     .controls{
-
-        display:none;
-
+        display:none !important;
     }
 
-
-    .sheet{
-
-
-        width:245mm;
-
-        height:165mm;
-
-
-        transform:scale(0.95);
-
-        transform-origin:top left;
-
-
-        box-shadow:none;
-
-
+    .preview-button-area{
+        display:none !important;
+        height:0 !important;
+        margin:0 !important;
+        padding:0 !important;
     }
 
+    #previewArea{
+        display:block !important;
+        margin:0 !important;
+        padding:0 !important;
+    }
 
     .preview-area{
+        display:block !important;
+        padding:0 !important;
+        margin:0 !important;
+        overflow:visible !important;
+    }
 
-        display:block;
+    .sheet{
+        width:245mm;
+        height:165mm;
 
+        transform:scale(0.95);
+        transform-origin:top left;
+
+        box-shadow:none;
     }
 
 }
-
 /* =========================
    プレビューボタン
 ========================= */
